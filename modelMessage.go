@@ -18,34 +18,14 @@ func NewModelMessage(msg *Message, ctx *ViewContext) ModelMessage {
 	doc := md.Parse(msg.Content)
 	cache := md.RenderText(doc, msg.Content, msg.Color())
 
-	displayName := msg.Prev == nil || !msg.Prev.lastAuthorUnderX(msg.Author, 7)
+	shouldDisplayName := msg.Prev == nil || msg.Prev.Author != msg.Author
 
 	return ModelMessage{
 		msg:           msg,
 		cachedContent: cache,
 		ctx:           ctx,
-		displayName:   displayName,
+		displayName:   shouldDisplayName,
 	}
-}
-
-func (m Message) lastAuthorUnderX(searchName string, needed int) bool {
-	if m.Author == searchName {
-		return true
-	}
-
-	if needed <= 0 {
-		return false
-	}
-
-	if m.Prev == nil {
-		return false
-	}
-
-	return m.Prev.lastAuthorUnderX(searchName, needed-1)
-}
-
-func (m ModelMessage) shouldDisplayName() bool {
-	return !m.msg.lastAuthorUnderX(m.msg.Author, 7)
 }
 
 func (m ModelMessage) View() string {
