@@ -182,7 +182,7 @@ func (m *MainView) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			m.textarea = textarea.New()
 			m.textarea.KeyMap = textAreaKeys
 			m.textarea.ShowLineNumbers = false
-			m.textarea.Placeholder = "Message..."
+			m.textarea.Placeholder = "Mensagem..."
 			m.textarea.SetHeight(TEXT_INPUT_HEIGHT)
 			m.textarea.SetWidth(msg.Width)
 			m.textarea.Focus()
