@@ -156,7 +156,7 @@ func (m *MainView) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		} else {
 			m.renderMessages()
 		}
-		shouldScrollToBot = msg.Author == AUTHOR_SEND_INFO
+		shouldScrollToBot = msg.Author == AUTHOR_SEND_INFO || m.viewport.AtBottom()
 	case tea.WindowSizeMsg:
 		m.ctx.Width = msg.Width
 		m.ctx.Height = msg.Height
@@ -176,6 +176,7 @@ func (m *MainView) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		if oldCtx.Width == 0 {
 			m.viewport = viewport.New(msg.Width, vpHeight)
 			m.viewport.KeyMap = vpKeys
+			shouldScrollToBot = true
 
 			m.textarea = textarea.New()
 			m.textarea.KeyMap = textAreaKeys
@@ -187,6 +188,7 @@ func (m *MainView) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			
 			m.help = help.New()
 		} else {
+			shouldScrollToBot = m.viewport.AtBottom()
 			m.viewport.Width = msg.Width
 			m.viewport.Height = vpHeight
 			m.textarea.SetWidth(msg.Width)
