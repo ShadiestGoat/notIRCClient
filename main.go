@@ -1,19 +1,32 @@
 package main
 
 import (
+	"os"
+	"path"
+
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/shadiestgoat/log"
 )
 
 func init() {
-	log.Init(log.NewLoggerFile("log"))
+	conf, _ := os.UserConfigDir()
+	p := path.Join(conf, "notIRC")
+	os.Mkdir(p, 0755)
+	p = path.Join(p, "log")
+
+	log.Init(log.NewLoggerFile(p))
 }
 
-var mainView = initMainView()
-var p = tea.NewProgram(mainView, 
-	tea.WithAltScreen(),
-	tea.WithMouseCellMotion(),
-)
+var mainView *MainView
+var p *tea.Program
+
+func init() {
+	mainView = initMainView()
+	p = tea.NewProgram(mainView, 
+		tea.WithAltScreen(),
+		tea.WithMouseCellMotion(),
+	)
+}
 
 func main() {
 	_, err := p.Run()
