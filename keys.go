@@ -41,8 +41,8 @@ func init() {
 	textAreaKeys.DeleteCharacterBackward = key.NewBinding(key.WithKeys("backspace"))
 	textAreaKeys.DeleteCharacterForward = key.NewBinding(key.WithKeys("delete"))
 	textAreaKeys.InsertNewline = key.NewBinding(
-		key.WithKeys("alt+enter"),
-		key.WithHelp("Alt+Enter", "Pular linha"),
+		key.WithKeys("alt+enter", "alt+'"),
+		key.WithHelp("Alt+'/Alt+Enter", "Pular linha"),
 	)
 
 	textAreaKeys.Paste.SetHelp("Ctrl+V", "Colar")
@@ -76,8 +76,8 @@ var appKeyMap fullKeyMap
 func init() {
 	appKeyMap = fullKeyMap{
 		Help: key.NewBinding(
-			key.WithKeys("alt+?"),
-			key.WithHelp("Alt+?", "Abrir menu de atalhos"),
+			key.WithKeys("ctrl+h"),
+			key.WithHelp("Ctrl+H", "Abrir menu de atalhos"),
 		),
 		VPUp:       vpKeys.Up,
 		VPDown:     vpKeys.Down,
