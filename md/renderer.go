@@ -304,6 +304,25 @@ func (r *Renderer) RegisterRenderers() {
 		case 1:
 			f = r.updateStyle(r.s.Italic)
 		case 2:
+			f = r.updateStyle(r.s.Underline, ast.KindHeading)
+		}
+
+		if f != nil {
+			f(w, s, n, entering)
+		}
+
+		return ast.WalkContinue, nil
+	}
+
+	r.nodeRenderFuncs[KindUnderline] = func(w io.Writer, s []byte, n ast.Node, entering bool) (ast.WalkStatus, error) {
+		e := n.(*Underline)
+
+		var f NodeRendererFunc
+
+		switch e.Level {
+		case 1:
+			f = r.updateStyle(r.s.Italic)
+		case 2:
 			f = r.updateStyle(r.s.Bold, ast.KindHeading)
 		}
 

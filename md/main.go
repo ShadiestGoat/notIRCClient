@@ -10,6 +10,7 @@ import (
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
 	"github.com/yuin/goldmark/text"
+	"github.com/yuin/goldmark/util"
 )
 
 func newParser() goldmark.Markdown {
@@ -22,6 +23,9 @@ func newParser() goldmark.Markdown {
 		),
 		goldmark.WithParserOptions(
 			parser.WithAutoHeadingID(),
+			parser.WithInlineParsers(
+				util.Prioritized(&underlineParser{}, 600),
+			),
 		),
 	)
 
