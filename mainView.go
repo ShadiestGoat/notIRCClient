@@ -87,7 +87,8 @@ func (m *MainView) Init() tea.Cmd {
 				p.Quit()
 				return
 			}
-			m.Update(msg)
+			m.Update(&*msg)
+			msg = nil
 		}
 	}()
 
