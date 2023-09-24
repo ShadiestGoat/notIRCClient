@@ -304,7 +304,7 @@ func (r *Renderer) RegisterRenderers() {
 		case 1:
 			f = r.updateStyle(r.s.Italic)
 		case 2:
-			f = r.updateStyle(r.s.Underline, ast.KindHeading)
+			f = r.updateStyle(r.s.Bold, ast.KindHeading)
 		}
 
 		if f != nil {
@@ -323,7 +323,7 @@ func (r *Renderer) RegisterRenderers() {
 		case 1:
 			f = r.updateStyle(r.s.Italic)
 		case 2:
-			f = r.updateStyle(r.s.Bold, ast.KindHeading)
+			f = r.updateStyle(r.s.Underline, ast.KindHeading)
 		}
 
 		if f != nil {

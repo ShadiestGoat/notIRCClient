@@ -24,7 +24,7 @@ func newParser() goldmark.Markdown {
 		goldmark.WithParserOptions(
 			parser.WithAutoHeadingID(),
 			parser.WithInlineParsers(
-				util.Prioritized(&underlineParser{}, 600),
+				util.Prioritized(&underlineParser{}, 450),
 			),
 		),
 	)
