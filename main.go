@@ -14,7 +14,7 @@ func init() {
 	os.Mkdir(p, 0755)
 	p = path.Join(p, "log")
 
-	log.Init(log.NewLoggerFile(p))
+	log.Init(log.NewLoggerFileComplex(p, log.FILE_OVERWRITE, 0))
 }
 
 var mainView *MainView
