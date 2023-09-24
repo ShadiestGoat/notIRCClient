@@ -4,7 +4,6 @@ import (
 	"io"
 	"math"
 
-	"github.com/shadiestgoat/log"
 	"github.com/yuin/goldmark/ast"
 	"github.com/yuin/goldmark/text"
 )
@@ -25,8 +24,6 @@ func logBlock(w io.Writer, s []byte, n ast.Node, entering bool) (ast.WalkStatus,
 		return ast.WalkContinue, nil
 	}
 
-	log.Debug("%#v: " + Lines(n.Lines(), s), n)
-
 	return ast.WalkContinue, nil
 }
 
@@ -34,8 +31,6 @@ func logItem(w io.Writer, s []byte, n ast.Node, entering bool) (ast.WalkStatus, 
 	if !entering {
 		return ast.WalkContinue, nil
 	}
-
-	log.Debug("%#v", n)
 
 	return ast.WalkContinue, nil
 }

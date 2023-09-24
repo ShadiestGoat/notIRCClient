@@ -108,8 +108,6 @@ func (m *MainView) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
-		log.Debug(msg.String())
-
 		switch {
 		case key.Matches(msg, appKeyMap.Quit):
 			cmds = append(cmds, tea.Quit)
