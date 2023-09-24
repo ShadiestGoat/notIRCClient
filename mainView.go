@@ -87,7 +87,6 @@ func (m *MainView) Init() tea.Cmd {
 				p.Quit()
 				return
 			}
-
 			m.Update(msg)
 		}
 	}()
@@ -152,14 +151,11 @@ func (m *MainView) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 		m.msgs = append(m.msgs, msgMod)
 
-		if oldCtx.AuthorSize == 0 {
-
-		} else if m.ctx.AuthorSize == oldCtx.AuthorSize {
+		if m.ctx.AuthorSize == oldCtx.AuthorSize && oldCtx.AuthorSize != 0 {
 			m.msgCache = lipgloss.JoinVertical(0, m.msgCache, msgMod.View())
 		} else {
 			m.renderMessages()
 		}
-
 		shouldScrollToBot = msg.Author == AUTHOR_SEND_INFO
 	case tea.WindowSizeMsg:
 		m.ctx.Width = msg.Width
@@ -220,7 +216,6 @@ func (m MainView) View() string {
 	if m.ctx.Width == 0 {
 		return "Loading..."
 	}
-	log.Debug("View called")
 
 	return lipgloss.JoinVertical(0, 
 		m.viewport.View(),
