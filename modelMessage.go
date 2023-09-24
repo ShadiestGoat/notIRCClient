@@ -64,7 +64,7 @@ func (m ModelMessage) View() string {
 		}
 	}
 
-	author := styleAuthor.Copy().Width(m.ctx.Width - contentSize).Render(authorName)
+	author := styleAuthor.Copy().Width(m.ctx.Width - contentSize - 1).Render(authorName)
 	content := lipgloss.NewStyle().Width(contentSize).Render(m.cachedContent)
 
 	return base.Render(
