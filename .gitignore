@@ -3,3 +3,4 @@ notIRCClient.exe
 rsrc_*
 selfbuild.sh
 output
+winres/icon*
